@@ -6,6 +6,8 @@ pipeline {
         RELEASE_NAME = 'my-flask-app'
         NAMESPACE = 'flask-app'
         IMAGE_TAG = 'latest'
+        KUBECONFIG = "$HOME/.kube/config"
+    }
     }
 
     stages {
