@@ -19,9 +19,9 @@ pipeline {
         stage('Deploy via Helm') {
             steps {
                 sh """
-                sudo mkdir -p /var/lib/jenkins/.kube
-                sudo cp /home/$USER/.kube/config /var/lib/jenkins/.kube/config
-                sudo chown -R jenkins:jenkins /var/lib/jenkins/.kube
+                // sudo mkdir -p /var/lib/jenkins/.kube
+                // sudo cp /home/$USER/.kube/config /var/lib/jenkins/.kube/config
+                // sudo chown -R jenkins:jenkins /var/lib/jenkins/.kube
 
 
                 kubectl config get-contexts
