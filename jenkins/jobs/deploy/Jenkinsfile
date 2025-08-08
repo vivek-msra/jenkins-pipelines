@@ -1,0 +1,28 @@
+pipeline {
+    agent any
+
+    environment {
+        HELM_CHART_PATH = 'helm/flask-app'
+        RELEASE_NAME = 'my-flask-app'
+        NAMESPACE = 'flask-app'
+        IMAGE_TAG = 'v1'
+    }
+
+    stages {
+        stage('Checkout Code') {
+            steps {
+                git url: 'https://github.com/vivek-msra/flask-microservice.git'
+            }
+        }
+
+        stage('Deploy via Helm') {
+            steps {
+                sh """
+                helm upgrade --install ${RELEASE_NAME} ${HELM_CHART_PATH} \
+                    --namespace ${NAMESPACE} --create-namespace \
+                    --set image.tag=${IMAGE_TAG}
+                """
+            }
+        }
+    }
+}
