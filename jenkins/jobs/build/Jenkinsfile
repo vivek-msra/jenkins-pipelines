@@ -3,8 +3,7 @@ pipeline {
 
     environment {
         IMAGE_NAME = "my-flask-app"
-        IMAGE_TAG = "v1"
-        VENV_DIR = "venv"
+        IMAGE_TAG = "latest"
     }
 
     stages {
