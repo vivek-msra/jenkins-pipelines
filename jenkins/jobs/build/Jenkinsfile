@@ -29,6 +29,7 @@ pipeline {
         steps {
             sh '''
                 export PATH=$PATH:/var/lib/jenkins/.local/bin
+                export PYTHONPATH=$PYTHONPATH:$(pwd)
                 pytest tests/test_main.py
             '''
         }
