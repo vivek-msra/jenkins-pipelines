@@ -8,7 +8,6 @@ pipeline {
         IMAGE_TAG = 'latest'
         KUBECONFIG = "$HOME/.kube/config"
     }
-    }
 
     stages {
         stage('Checkout Code') {
