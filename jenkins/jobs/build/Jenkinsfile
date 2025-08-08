@@ -15,7 +15,8 @@ pipeline {
 
         stage('Install Dependencies') {
             steps {
-                sh 'python3 -m pip install -r app/requirements.txt'
+                sh 'python3 -m pip install --upgrade pip'
+                sh 'pip install -r app/requirements.txt'
                 sh 'pip install pytest'
             }
         }
@@ -32,7 +33,7 @@ pipeline {
             }
         }
 
-        // Optional: Push to local registry if needed
+        // Optional: Push to local registry
         // stage('Push Image to Local Registry') {
         //     steps {
         //         sh 'docker tag ${IMAGE_NAME}:${IMAGE_TAG} localhost:5000/${IMAGE_NAME}:${IMAGE_TAG}'
