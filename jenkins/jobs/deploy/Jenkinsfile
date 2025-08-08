@@ -6,7 +6,7 @@ pipeline {
         RELEASE_NAME = 'my-flask-app'
         NAMESPACE = 'flask-app'
         IMAGE_TAG = 'latest'
-        KUBECONFIG = "$HOME/.kube/config"
+        KUBECONFIG = "/var/lib/jenkins/.kube/config"
     }
 
     stages {
@@ -19,6 +19,10 @@ pipeline {
         stage('Deploy via Helm') {
             steps {
                 sh """
+                sudo mkdir -p /var/lib/jenkins/.kube
+                sudo cp /home/$USER/.kube/config /var/lib/jenkins/.kube/config
+                sudo chown -R jenkins:jenkins /var/lib/jenkins/.kube
+
                 kubectl config use-context k3d-test-us-west-2-green
                 k3d image import my-flask-app:latest -c test-us-west-2-green
                 helm upgrade --install ${RELEASE_NAME} ${HELM_CHART_PATH} \
